@@ -14,13 +14,13 @@ const refs = {
     input: document.querySelector('.search-input'),
     sentinel: document.querySelector('#sentinel'),
 };
-
-refs.input.addEventListener('input', debounce(onSearch, 500));
+refs.searchForm.addEventListener('submit', onSearch);
+// refs.input.addEventListener('input', debounce(onSearch, 500));
 
 function onSearch(e) {
     e.preventDefault();
 
-    hitsApiService.query = e.target.value.trim();
+    hitsApiService.query = e.currentTarget.elements.query.value;
     if(hitsApiService.query.length === 0) {
         
         return clearHitsContainer();
